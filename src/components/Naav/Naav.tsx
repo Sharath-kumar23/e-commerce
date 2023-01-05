@@ -16,8 +16,9 @@ import { styled } from '@mui/material/styles';
 import { Badge, BadgeProps } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import styles from "./naav.module.scss";
+import {  useNavigate } from 'react-router-dom';
 
-const pages = ['Home', 'About us', 'Blog'];
+const pages = ['Home', 'About us', 'Wishlist'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function ResponsiveAppBar() {
@@ -47,6 +48,8 @@ function ResponsiveAppBar() {
       padding: '0 4px',
     },
   }));
+
+  let navigate = useNavigate();
 
   
 
@@ -104,7 +107,8 @@ function ResponsiveAppBar() {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                  <Typography textAlign="center">{page}
+              </Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -132,16 +136,18 @@ function ResponsiveAppBar() {
             {pages.map((page) => (
               <Button
                 key={page}
-                onClick={handleCloseNavMenu}
+                onClick={()=>{handleCloseNavMenu(); page==="About us"? navigate("/about"):navigate("")}}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 {page}
+               
+                
               </Button>
             ))}
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-          <IconButton aria-label="cart" sx={{mr:2}}> 
+          <IconButton aria-label="cart" sx={{mr:2}} onClick={()=>{navigate("cart")}}> 
       <StyledBadge badgeContent={4} color="secondary">
         <ShoppingCartIcon />
       </StyledBadge>
