@@ -29,7 +29,7 @@ const Caterogry = () => {
     },
   ];
   return (
-    <div className="pt-5 container">
+    <div className={`${styles.container}`}>
       <h3 className="py-2">Shop by Category</h3>
       <div className={`${styles.categoryWrapper}`}>
         {categories.map((Category) => {

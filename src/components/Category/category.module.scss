@@ -3,8 +3,6 @@
 
 
 .categoryWrapper {
-    margin-left: 50px;
-    margin-right:50px;
   display: flex;
   justify-content: space-between;
 
@@ -23,6 +21,8 @@
   }
 }
 
+
+
 @media (max-width: $media-md) {
   .categoryWrapper {
     flex-direction: column;
@@ -35,6 +35,11 @@
       }
     }
   }
+}
+
+.container{
+  margin-left: 50px;
+  margin-right: 50px;
 }
 
 @media (min-width: 768px) and (max-width: $media-lg) {
