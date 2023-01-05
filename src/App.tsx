@@ -1,6 +1,8 @@
 import React from 'react';
 import { useRoutes } from 'react-router-dom';
 import './App.css';
+import Footer from './components/Footer/Footer';
+import ResponsiveAppBar from './components/Naav/Naav';
 import routes from './routes';
 
 function App() {
@@ -8,12 +10,12 @@ function App() {
 
   return (
     <div className="App">
-    {/* <Naav /> */}
+    {<ResponsiveAppBar/>}
     <div className="main">
      {content}
     </div>
-    {/* <Footer />
-    <ToastContainer position="top-right" />
+   <Footer />
+  {/* <ToastContainer position="top-right" />
     <ToastContainer /> */}
   </div>
   );
