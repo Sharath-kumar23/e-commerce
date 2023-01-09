@@ -1,16 +1,21 @@
 import { Container } from "@mui/material";
 import { useEffect } from "react";
-import { STATUS } from "../../Constants/Status";
+import { STATUS } from "../../Constants/AppConstants";
 import { useAppDispatch, useAppSelector } from "../../redux-features/product/products-hooks";
 import { fetchProductList, Products } from "../../redux-features/productslice";
 import Loader from "../Loader/Loader";
-import ProductCard from "../ProductCard/ProductCard";
+import ProductCardDetailsUI from "../ProductCard/ProductCardDetails";
 import styles from "./productlist.module.scss"
 const ProductList =()=>{
 
     const dispatch= useAppDispatch();
 
-    const {status, products}=useAppSelector((state)=>state.products)
+    let {status,products, filterProducts}=useAppSelector((state)=>state.products)
+   // debugger
+    if(filterProducts.length===0)
+    {
+      filterProducts=[...products]
+    }
 
     useEffect(()=>{
         dispatch(fetchProductList())
@@ -36,29 +41,15 @@ const ProductList =()=>{
                 </p>
               </div>
               <div>
-                {/* {showSearch && (
-                  <input
-                    type="text"
-                    className={styles.searchBar}
-                    value={searchValue}
-                    onChange={(e) => setSearchValue(e.target.value)}
-                    placeholder="Search Product"
-                  />
-                )}
-                <BiSearch
-                  size={25}
-                  onClick={() => setShowSearch(!showSearch)}
-                  style={{ cursor: "pointer" }}
-                /> */}
               </div>
             </div>
             <div className={styles.productList}>
-              {products
+              {filterProducts
                 ?.filter((item:Products) =>
                   item.title.toLowerCase().includes("")
                 )
                 ?.map((product:Products) => {
-                  return <ProductCard key={product?.id} product={product} />;
+                  return <ProductCardDetailsUI key={product?.id} product={product} />;
                 })}
             </div>
           </Container>

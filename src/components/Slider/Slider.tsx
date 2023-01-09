@@ -68,6 +68,7 @@ function SwipeableTextMobileStepper() {
                   display: 'block',
                   overflow: 'hidden',
                   width: '100%',
+                  backgroundSize:"cover",
                 }}
                 src={step.imgPath}
                 alt={step.label}

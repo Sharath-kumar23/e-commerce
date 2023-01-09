@@ -1,11 +1,28 @@
-import React from "react";
+import { Block } from "@mui/icons-material";
+import { Box } from "@mui/material";
+import React, { useState } from "react";
 import cat1 from "../../assests/cat1.webp";
 import cat2 from "../../assests/cat2.webp";
 import cat3 from "../../assests/cat3.webp";
 import cat4 from "../../assests/cat4.webp";
+import { useAppDispatch, useAppSelector } from "../../redux-features/product/products-hooks";
+import { fetchProductList, filterCategory } from "../../redux-features/productslice";
 import styles from "./category.module.scss";
 
+
+
 const Caterogry = () => {
+
+  const dispatch= useAppDispatch();
+
+ 
+  const updateCategory=async (category:string,id:number)=>{
+    setCategoryId(id)
+    dispatch(filterCategory({category}))
+  }
+
+  const [categoryId,setCategoryId]=useState(0)
+
   const categories = [
     {
       img: cat1,
@@ -28,22 +45,27 @@ const Caterogry = () => {
       id: 4,
     },
   ];
+
+  
   return (
-    <div className={`${styles.container}`}>
-      <h3 className="py-2">Shop by Category</h3>
+    <Box  className={`${styles.container}`}>
+      <div className={`${styles.containerBorder}`}>
+      <div style={{display:"inline-block"}}>
+      <h3 className={`${styles.textColor}`}>Shop by Category</h3>
+      </div>
       <div className={`${styles.categoryWrapper}`}>
         {categories.map((Category) => {
           return (
-            <div key={Category.id}>
+            <div  key={Category.id} onClick={()=>updateCategory(Category.name,Category.id)}>
               <div
                 className="category"
                 style={{
                   background: `linear-gradient(rgba(20,20,20, 0.3),rgba(20,20,20, .3)), url(${Category.img}) no-repeat`,
                   backgroundSize: "cover",
-                  backgroundPosition: "center",
+                  border: categoryId===Category.id?"1px solid blue":"",
                 }}
               >
-                <h5 className="text-white px-3">
+                <h5 className={`${styles.textColor}`}>
                   {Category.name.toUpperCase()}
                 </h5>
               </div>
@@ -51,7 +73,9 @@ const Caterogry = () => {
           );
         })}
       </div>
-    </div>
+      </div>
+     
+    </Box>
   );
 };
 

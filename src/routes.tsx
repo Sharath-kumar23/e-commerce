@@ -2,6 +2,7 @@ import { lazy, Suspense } from 'react';
 import { RouteObject } from 'react-router-dom';
 import Cart from './components/Cart/cart';
 import LoadingScreen from './components/LoadingScreen'
+import ProductDetail from './components/ProductDetail/ProductDetail';
 
 
 const Loadable = (Component: any) => (props: JSX.IntrinsicAttributes) =>
@@ -15,7 +16,7 @@ const Loadable = (Component: any) => (props: JSX.IntrinsicAttributes) =>
 const Home = Loadable(lazy(() => import('./components/Home/Home')));
 
 // ABOUT PAGE
-const About = Loadable(lazy(() => import('./components/About/About')));
+const About = Loadable(lazy(() => import('./components/form/RegistrationForm')));
 
 const routes: RouteObject[] = [
   {
@@ -30,6 +31,10 @@ const routes: RouteObject[] = [
     path: 'cart',
     element: <Cart />
   },
+  {
+    path:"/products/:id",
+    element:<ProductDetail/>
+  }
 ];
 
 export default routes;

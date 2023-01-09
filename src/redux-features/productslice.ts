@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios"
-import { STATUS } from "../Constants/Status";
+import { STATUS } from "../Constants/AppConstants";
 
 
 const baseUrl="https://fakestoreapi.com/"
@@ -23,12 +23,14 @@ export interface Products {
 
 export interface ProductsDetails{
     status:string,
-    products:Products[]
+    products:Products[],
+    filterProducts:Products[]
 }
 
 const initialState:ProductsDetails={
     status:"",
-    products:[]
+    products:[],
+    filterProducts:[],
 }
 
 const productSlice = createSlice({
@@ -47,7 +49,14 @@ const productSlice = createSlice({
         state.status = STATUS.ERROR;
       });
   },
-  reducers:{}
+  reducers:{
+    filterCategory(state, action) {
+      //if that action product has already in cart then if block will work
+      state.filterProducts=state.products.filter((product:Products)=>{
+       return product.category===action.payload.category
+      })
+    },
+  }
 });
 
 //fetching product using build in thunk on toolkit
@@ -56,5 +65,9 @@ export const fetchProductList=createAsyncThunk("fetch/products",async()=>{
     const data=axios.get(`${baseUrl}products`).then((res)=>res.data);
     return data;
 });
+
+export const {
+  filterCategory,
+} = productSlice.actions;
 
 export default productSlice.reducer;
