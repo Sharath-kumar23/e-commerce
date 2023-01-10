@@ -16,7 +16,10 @@ const Loadable = (Component: any) => (props: JSX.IntrinsicAttributes) =>
 const Home = Loadable(lazy(() => import('./components/Home/Home')));
 
 // ABOUT PAGE
-const About = Loadable(lazy(() => import('./components/form/RegistrationForm')));
+
+const About = Loadable(lazy(() => import('./components/About/About')));
+
+const ProfileForm = Loadable(lazy(() => import('./components/form/ProfileForm')));
 
 const routes: RouteObject[] = [
   {
@@ -34,6 +37,10 @@ const routes: RouteObject[] = [
   {
     path:"/products/:id",
     element:<ProductDetail/>
+  },
+  {
+    path:"register",
+    element:<ProfileForm/>
   }
 ];
 

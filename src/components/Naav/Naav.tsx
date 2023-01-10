@@ -7,9 +7,7 @@ import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import { styled } from "@mui/material/styles";
@@ -18,32 +16,35 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import styles from "./naav.module.scss";
 import { useNavigate } from "react-router-dom";
 import { HEADERLIST } from "../../Constants/AppConstants";
+import { useAppSelector } from "../../redux-features/product/products-hooks";
 
-const pages = [HEADERLIST.HOME, HEADERLIST.ABOUT_US, HEADERLIST.WHISHLIST];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const pages = [HEADERLIST.HOME, HEADERLIST.ABOUT_US, HEADERLIST.REGISTER];
+//const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
-  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
-    null
-  );
+  // const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
+  //   null
+  // );
+
+  const products = useAppSelector((state) => state.cart);
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
   };
-  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElUser(event.currentTarget);
-  };
+  // const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
+  //   setAnchorElUser(event.currentTarget);
+  // };
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
 
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
+  // const handleCloseUserMenu = () => {
+  //   setAnchorElUser(null);
+  // };
 
   const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
     "& .MuiBadge-badge": {
@@ -69,6 +70,10 @@ function ResponsiveAppBar() {
     }
     case HEADERLIST.WHISHLIST:{
       navigate("wishinglist")
+      break;
+    }
+    case HEADERLIST.REGISTER:{
+      navigate("register")
       break;
     }
    
@@ -170,18 +175,18 @@ function ResponsiveAppBar() {
 
           <Box sx={{ flexGrow: 0 }}>
             <IconButton
+            sx={{ mr: 2,flexGrow: 1, display: { xs: "none", md: "flex" } }}
               aria-label="cart"
-              sx={{ mr: 2 }}
               onClick={() => {
                 navigate("cart");
               }}
             >
-              <StyledBadge badgeContent={4} color="secondary">
-                <ShoppingCartIcon />
+              <StyledBadge badgeContent={products.cart.length} color="secondary">
+                <ShoppingCartIcon sx={{color:"white"}} />
               </StyledBadge>
             </IconButton>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+            {/* <Tooltip title="Open settings">
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0}}>
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
               </IconButton>
             </Tooltip>
@@ -207,7 +212,7 @@ function ResponsiveAppBar() {
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}
-            </Menu>
+            </Menu> */}
           </Box>
         </Toolbar>
       </Container>

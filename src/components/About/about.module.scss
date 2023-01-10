@@ -3,10 +3,13 @@
 .container {
   padding-bottom: 60px;
   padding-top: 70px;
+  margin: 30px;
+  height: 65vh;
 }
 
 @media (max-width: $media-md) {
   .container {
+
     padding-top: 30px;
 
     p {

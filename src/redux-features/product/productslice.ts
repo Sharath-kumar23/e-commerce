@@ -1,6 +1,6 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, Slice } from "@reduxjs/toolkit";
 import axios from "axios"
-import { STATUS } from "../Constants/AppConstants";
+import { STATUS } from "../../Constants/AppConstants";
 
 
 const baseUrl="https://fakestoreapi.com/"
@@ -33,7 +33,7 @@ const initialState:ProductsDetails={
     filterProducts:[],
 }
 
-const productSlice = createSlice({
+const productSlice:Slice = createSlice({
   name: "products",
   initialState,
   extraReducers: (builder) => {
@@ -51,7 +51,6 @@ const productSlice = createSlice({
   },
   reducers:{
     filterCategory(state, action) {
-      //if that action product has already in cart then if block will work
       state.filterProducts=state.products.filter((product:Products)=>{
        return product.category===action.payload.category
       })

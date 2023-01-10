@@ -19,7 +19,6 @@ export const CartSlice = createSlice({
   initialState,
   reducers: {
     addToCart(state, action) {
-      //if that action product has already in cart then if block will work
       const itemIndex = state.cart.findIndex(
         (item) => item.id === action.payload.id
       );
@@ -29,7 +28,6 @@ export const CartSlice = createSlice({
         const product = { ...action.payload, quantity: 1 };
         state.cart.push(product);
       }
-
       localStorage.setItem("cart", JSON.stringify(state.cart));
     },
     removeFromCart(state, action) {
@@ -37,7 +35,7 @@ export const CartSlice = createSlice({
       state.cart = updatedCart;
       localStorage.setItem("cart", JSON.stringify(state.cart));
     },
-    removeAll(state, action) {
+    removeAll(state) {
       state.cart = [];
       localStorage.setItem("cart", JSON.stringify(state.cart));
     },

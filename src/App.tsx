@@ -16,8 +16,7 @@ function App() {
      {content}
     </div>
    <Footer />
-   <ToastContainer position="top-right" />
-      <ToastContainer />
+  
   </div>
   );
 }

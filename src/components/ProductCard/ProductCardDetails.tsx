@@ -7,21 +7,27 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
-import { Products } from "../../redux-features/productslice";
+import { Products } from "../../redux-features/product/productslice";
 import styles from "./productCard.module.scss";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { useNavigate } from "react-router-dom";
 import { memo } from "react";
+import { useAppDispatch } from "../../redux-features/product/products-hooks";
+import { addToCart } from "../../redux-features/cart/CartSlice";
 
 type ProductDetails = {
   key: number;
   product: Products;
+  handleClickOpen:Function,
 };
 
 const ProductCardDetailsUI: React.FunctionComponent<ProductDetails> = ({
   product,
+  handleClickOpen
 }) => {
   const title = product?.title.slice(0, 20);
+
+ 
 
   const navigate = useNavigate();
   return (
@@ -47,7 +53,7 @@ const ProductCardDetailsUI: React.FunctionComponent<ProductDetails> = ({
         <IconButton aria-label="share">
           <ShareIcon />
         </IconButton>
-        <IconButton aria-label="share">
+        <IconButton aria-label="cart" onClick={()=>{handleClickOpen(product)}}>
           <ShoppingCartIcon />
         </IconButton>
       </CardActions>

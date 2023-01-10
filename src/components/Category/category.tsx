@@ -1,12 +1,11 @@
-import { Block } from "@mui/icons-material";
 import { Box } from "@mui/material";
 import React, { useState } from "react";
 import cat1 from "../../assests/cat1.webp";
 import cat2 from "../../assests/cat2.webp";
 import cat3 from "../../assests/cat3.webp";
 import cat4 from "../../assests/cat4.webp";
-import { useAppDispatch, useAppSelector } from "../../redux-features/product/products-hooks";
-import { fetchProductList, filterCategory } from "../../redux-features/productslice";
+import { useAppDispatch } from "../../redux-features/product/products-hooks";
+import { filterCategory } from "../../redux-features/product/productslice";
 import styles from "./category.module.scss";
 
 
@@ -15,7 +14,6 @@ const Caterogry = () => {
 
   const dispatch= useAppDispatch();
 
- 
   const updateCategory=async (category:string,id:number)=>{
     setCategoryId(id)
     dispatch(filterCategory({category}))

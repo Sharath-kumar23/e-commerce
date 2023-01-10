@@ -39,6 +39,10 @@
 
 .textColor{
   color: aliceblue;
+  @media (min-width: 0) and (max-width:768px)
+  {
+    text-align: center;
+  }
 }
 
 .container{
@@ -50,6 +54,13 @@
   padding-right: 20px;
   padding-top: 20px;
   padding-bottom: 20px;
+
+  @media (min-width: 0) and (max-width:768px)
+  {
+    margin: 0;
+    padding: 0;
+    padding-bottom: 20px;
+  }
 }
 
 .containerBorder{

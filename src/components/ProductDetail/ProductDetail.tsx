@@ -31,9 +31,9 @@ const ProductDetail = () => {
   //add product to cart handler
   const productHandler = () => {
     dispatch(addToCart(data));
-    toast.success(`${data?.title.slice(0, 20)} is added to cart`, {
-      autoClose: 1000,
-    });
+    // toast.success(`${data?.title.slice(0, 20)} is added to cart`, {
+    //   autoClose: 1000,
+    // });
   };
 
  
@@ -51,6 +51,7 @@ const ProductDetail = () => {
           />
         </div>
         <div className="pt-3">
+        
           <h4>{data?.title}</h4>
           <h6 className="text-success">
             {data?.rating.count > 1 && "In Stock"}

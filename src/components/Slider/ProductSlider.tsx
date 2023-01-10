@@ -1,6 +1,4 @@
 import React, { FC, useLayoutEffect, useState } from "react";
-import Carousel from "react-bootstrap/Carousel";
-
 import Loader from "../Loader/Loader";
 import useFetch from "../../Services/useFetch";
 import ProductCard from "../ProductCard/ProductCardDetails";
@@ -11,21 +9,10 @@ type categories={
 }
 
 const ProductSlider:FC<categories> = ( {category}) => {
-  // const [isMobile, setIsMobile] = useState(false);
 
-  // //choose the screen size
-  // const handleResize = () => {
-  //   if (window.innerWidth <= 767) {
-  //     setIsMobile(true);
-  //   } else {
-  //     setIsMobile(false);
-  //   }
-  // };
-
-  // // create an event listener
-  // useEffect(() => {
-  //   window.addEventListener("resize", handleResize);
-  // });
+  const handleClickOpen = () => {
+    
+   };
 
   const [size, setSize] = useState<number | undefined>();
   useLayoutEffect(() => {
@@ -52,7 +39,7 @@ console.log("data  ",data)
       <div style={{display: "inline-flex",gap:50}}>
         {
         data?.map((product:any) => {
-          return <ProductCard product={product} key={product.id} />;
+          return <ProductCard handleClickOpen={handleClickOpen}  product={product} key={product.id} />;
         })}
       </div> 
     </div>

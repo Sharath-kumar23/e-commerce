@@ -8,5 +8,6 @@ export const STATUS = Object.freeze({
   export enum HEADERLIST{
     HOME="Home",
     ABOUT_US = "About us",
-    WHISHLIST = "Wishlist"
+    WHISHLIST = "Wishlist",
+    REGISTER = "Register"
     }
