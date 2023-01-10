@@ -1,8 +1,8 @@
 import { Button, Container, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
-import { STATUS } from "../../Constants/AppConstants";
+import { STATUS } from "../../constants/AppConstants";
 import { addToCart } from "../../redux-features/cart/CartSlice";
-import { useAppDispatch, useAppSelector } from "../../redux-features/product/products-hooks";
+import { useAppDispatch, useAppSelector } from "../../redux-features/products-hooks";
 import { fetchProductList, Products } from "../../redux-features/product/productslice";
 import Loader from "../Loader/Loader";
 import ProductCardDetailsUI from "../ProductCard/ProductCardDetails";
@@ -30,8 +30,6 @@ const ProductList =()=>{
       if (status !== STATUS.LOADING && status === STATUS.ERROR) {
         return <h2>{status}</h2>;
       }
-
-     
 
     const handleClickOpen = (product?:any) => {
     dispatch(addToCart(product))

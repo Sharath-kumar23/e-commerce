@@ -4,10 +4,10 @@ import { addToCart } from "../../redux-features/cart/CartSlice";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import Loader from "../Loader/Loader";
-import useFetch from "../../Services/useFetch";
+import useFetch from "../../services/useFetch";
 import styles from "./productdetail.module.scss";
 import ProductSlider from "../Slider/ProductSlider";
-import { useAppDispatch } from "../../redux-features/product/products-hooks";
+import { useAppDispatch } from "../../redux-features/products-hooks";
 
 export interface ResponseModel{
   data:any,
@@ -31,9 +31,9 @@ const ProductDetail = () => {
   //add product to cart handler
   const productHandler = () => {
     dispatch(addToCart(data));
-    // toast.success(`${data?.title.slice(0, 20)} is added to cart`, {
-    //   autoClose: 1000,
-    // });
+    toast.success(`${data?.title.slice(0, 20)} is added to cart`, {
+      autoClose: 1000,
+    });
   };
 
  

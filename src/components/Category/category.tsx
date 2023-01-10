@@ -4,7 +4,7 @@ import cat1 from "../../assests/cat1.webp";
 import cat2 from "../../assests/cat2.webp";
 import cat3 from "../../assests/cat3.webp";
 import cat4 from "../../assests/cat4.webp";
-import { useAppDispatch } from "../../redux-features/product/products-hooks";
+import { useAppDispatch } from "../../redux-features/products-hooks";
 import { filterCategory } from "../../redux-features/product/productslice";
 import styles from "./category.module.scss";
 

@@ -12,7 +12,7 @@ import styles from "./productCard.module.scss";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { useNavigate } from "react-router-dom";
 import { memo } from "react";
-import { useAppDispatch } from "../../redux-features/product/products-hooks";
+import { useAppDispatch } from "../../redux-features/products-hooks";
 import { addToCart } from "../../redux-features/cart/CartSlice";
 
 type ProductDetails = {

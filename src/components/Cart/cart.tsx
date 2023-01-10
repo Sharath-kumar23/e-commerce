@@ -7,7 +7,7 @@ import {
   incrementProduct,
 } from "../../redux-features/cart/CartSlice";
 
-import { useAppDispatch, useAppSelector } from "../../redux-features/product/products-hooks";
+import { useAppDispatch, useAppSelector } from "../../redux-features/products-hooks";
 import {  Card, CardContent, CardMedia, Typography } from "@mui/material";
 import { Stack } from "@mui/system";
 import { Button } from "react-bootstrap";
@@ -39,8 +39,7 @@ const Cart = () => {
          return (
     <Card key={product.id} className={styles.cartCard} sx={{ minWidth: 275,width:"100%" }}>
       <CardContent sx={{width:"100%"}}>
-      <Stack direction="row" spacing={2}  justifyContent="space-around" alignItems="stretch"
-  >
+      <Stack direction="row" spacing={2}  justifyContent="space-around" alignItems="stretch">
         <CardMedia
         component="img"
         sx={{ width: 50,heigh:50 }}

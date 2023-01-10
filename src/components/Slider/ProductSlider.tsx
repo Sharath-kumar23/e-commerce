@@ -1,6 +1,6 @@
 import React, { FC, useLayoutEffect, useState } from "react";
 import Loader from "../Loader/Loader";
-import useFetch from "../../Services/useFetch";
+import useFetch from "../../services/useFetch";
 import ProductCard from "../ProductCard/ProductCardDetails";
 import { ResponseModel } from "../ProductDetail/ProductDetail";
 

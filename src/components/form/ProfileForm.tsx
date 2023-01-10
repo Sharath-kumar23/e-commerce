@@ -10,29 +10,16 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 const ProfileForm= ()=>{
 
-    const [value, setValue] = React.useState<Dayjs | null>(null);
+    const [value, setValue] = React.useState<Dayjs | null>(dayjs(new Date()));
 
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = (data:any) => {
+      debugger
         console.log(data);
     }
-
-    const Theme = {
-      components: {
-          MuiFormHelperText: {
-              styleOverrides: {
-                  root: {
-                      color: "red"
-                  }
-              }
-          }
-      }
-  };
   
-
     return(
-      
         <form onSubmit={handleSubmit(onSubmit)}>
               <Card style={{boxShadow: "1px 1px 10px #d3d3d3"}}
       sx={{
@@ -69,8 +56,8 @@ const ProfileForm= ()=>{
     <FormControlLabel value="male" control={<Radio {...register("gender",{required:true})} />} label="Male" />
     <FormControlLabel value="other" control={<Radio {...register("gender",{required:true})} />} label="Other" />
   </RadioGroup>
-</FormControl>
-<LocalizationProvider dateAdapter={AdapterDayjs}>
+  </FormControl>
+{/* <LocalizationProvider dateAdapter={AdapterDayjs}>
       <Stack spacing={3}>
       
         <DatePicker
@@ -86,8 +73,8 @@ const ProfileForm= ()=>{
           renderInput={(params) => <TextField {...params} />}
         />
       </Stack>
-    </LocalizationProvider>
-      <Button type="submit" variant="text">Submit</Button>
+    </LocalizationProvider> */}
+      <Button type="submit" onClick={handleSubmit(onSubmit)} variant="text">Submit</Button>
       </Card>
      
 

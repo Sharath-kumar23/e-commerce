@@ -3,7 +3,7 @@ import { useRoutes } from 'react-router-dom';
 import './App.css';
 import Footer from './components/Footer/Footer';
 import ResponsiveAppBar from './components/Naav/Naav';
-import routes from './routes';
+import routes from './routes/routes';
 import { ToastContainer } from "react-toastify";
 
 function App() {

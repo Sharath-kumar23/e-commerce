@@ -15,8 +15,9 @@ import { Badge, BadgeProps } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import styles from "./naav.module.scss";
 import { useNavigate } from "react-router-dom";
-import { HEADERLIST } from "../../Constants/AppConstants";
-import { useAppSelector } from "../../redux-features/product/products-hooks";
+import { HEADERLIST } from "../../constants/AppConstants";
+import { useAppSelector } from "../../redux-features/products-hooks";
+import { ToastContainer } from "react-toastify";
 
 const pages = [HEADERLIST.HOME, HEADERLIST.ABOUT_US, HEADERLIST.REGISTER];
 //const settings = ["Profile", "Account", "Dashboard", "Logout"];

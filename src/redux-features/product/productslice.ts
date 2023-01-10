@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, Slice } from "@reduxjs/toolkit";
 import axios from "axios"
-import { STATUS } from "../../Constants/AppConstants";
+import { STATUS } from "../../constants/AppConstants";
 
 
 const baseUrl="https://fakestoreapi.com/"
