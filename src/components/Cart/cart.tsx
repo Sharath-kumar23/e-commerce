@@ -34,7 +34,7 @@ const Cart = () => {
 
 
   return (
-    <Stack sx={{marginTop:10}}>
+    <Stack sx={{marginTop:10,marginRight:10,minHeight:"80vh"}}>
       { products?.cart?.map((product) => {
          return (
     <Card key={product.id} className={styles.cartCard} sx={{ minWidth: 275,width:"100%" }}>
@@ -81,7 +81,7 @@ const Cart = () => {
       </CardContent>
       </Card>)})}
          <hr />
-       <div className="mb-5 d-flex justify-content-between">
+       <div className="" style={{marginLeft:16,marginBottom:16}}>
         <Button className={styles.cartBtn} onClick={removeAllProduct}>
            Remove All items
          </Button>

@@ -1,6 +1,6 @@
 import { Translate } from "@mui/icons-material";
 import { Box, Button, Card, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, Stack, TextField } from "@mui/material";
-import { useForm } from "react-hook-form";
+import { useForm ,Controller} from "react-hook-form";
 import * as React from 'react';
 import dayjs, { Dayjs } from 'dayjs';
 
@@ -13,7 +13,7 @@ const ProfileForm= ()=>{
     const [value, setValue] = React.useState<Dayjs | null>(dayjs(new Date()));
 
 
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors },control } = useForm();
     const onSubmit = (data:any) => {
       debugger
         console.log(data);
@@ -57,6 +57,7 @@ const ProfileForm= ()=>{
     <FormControlLabel value="other" control={<Radio {...register("gender",{required:true})} />} label="Other" />
   </RadioGroup>
   </FormControl>
+  
 {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
       <Stack spacing={3}>
       
