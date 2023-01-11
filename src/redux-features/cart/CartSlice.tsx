@@ -7,7 +7,7 @@ export interface ProductsDetails{
  
 }
 const cartJson = localStorage.getItem('cart');
-const cartData = cartJson !== null ? JSON.parse(cartJson) : {};
+const cartData = cartJson !== null ? JSON.parse(cartJson) : [];
 
 const initialState:ProductsDetails={
   cart: cartData,
@@ -19,6 +19,7 @@ export const CartSlice = createSlice({
   initialState,
   reducers: {
     addToCart(state, action) {
+      debugger
       const itemIndex = state.cart.findIndex(
         (item) => item.id === action.payload.id
       );

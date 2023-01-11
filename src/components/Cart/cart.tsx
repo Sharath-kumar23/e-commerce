@@ -17,7 +17,7 @@ const Cart = () => {
   const products = useAppSelector((state) => state.cart);
 
   //calculate total price
-  const totalPrice = products.cart.reduce(
+  const totalPrice = products?.cart?.reduce(
     (a, c) => a + c.quantity * c.price,
     0
   );

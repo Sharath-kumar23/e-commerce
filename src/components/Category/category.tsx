@@ -4,8 +4,8 @@ import cat1 from "../../assests/cat1.webp";
 import cat2 from "../../assests/cat2.webp";
 import cat3 from "../../assests/cat3.webp";
 import cat4 from "../../assests/cat4.webp";
-import { useAppDispatch } from "../../redux-features/products-hooks";
-import { filterCategory } from "../../redux-features/product/productslice";
+import { useAppDispatch, useAppSelector } from "../../redux-features/products-hooks";
+import { filterCategory, updateCategoryId } from "../../redux-features/product/productslice";
 import styles from "./category.module.scss";
 
 
@@ -14,12 +14,19 @@ const Caterogry = () => {
 
   const dispatch= useAppDispatch();
 
+  const {category,products}= useAppSelector((state)=>state.products)
+
   const updateCategory=async (category:string,id:number)=>{
     setCategoryId(id)
+    dispatch(updateCategoryId(id))
     dispatch(filterCategory({category}))
   }
+  let [categoryId,setCategoryId]=useState(0)
 
-  const [categoryId,setCategoryId]=useState(0)
+  if(category)
+  {
+    categoryId=category;
+  }
 
   const categories = [
     {

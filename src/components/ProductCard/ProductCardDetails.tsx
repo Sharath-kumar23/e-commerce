@@ -12,6 +12,10 @@ import styles from "./productCard.module.scss";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { useNavigate } from "react-router-dom";
 import { memo } from "react";
+import { withSnackbar } from "../snackbar/snackbar";
+import { Button } from "react-bootstrap";
+import { ButtonProps, styled } from "@mui/material";
+import { purple } from "@mui/material/colors";
 
 type ProductDetails = {
   key: number;
@@ -24,6 +28,18 @@ const ProductCardDetailsUI: React.FunctionComponent<ProductDetails> = ({
   handleClickOpen
 }) => {
   const title = product?.title.slice(0, 20);
+
+  const ColorButton = styled(Button)<ButtonProps>(({ theme }) => ({
+    color: theme.palette.getContrastText(purple[500]),
+    backgroundColor: purple[500],
+    border: '1px solid',
+    lineHeight: 1.5,
+    borderColor: '#9c27b0',
+    borderRadius: "20px",
+    '&:hover': {
+      backgroundColor: purple[700],
+    },
+  }));
 
  
 
@@ -51,9 +67,9 @@ const ProductCardDetailsUI: React.FunctionComponent<ProductDetails> = ({
         <IconButton aria-label="share">
           <ShareIcon />
         </IconButton>
-        <IconButton aria-label="cart" onClick={()=>{handleClickOpen(product)}}>
-          <ShoppingCartIcon />
-        </IconButton>
+        <ColorButton variant="contained"  onClick={()=>{handleClickOpen(product);}}>
+          Add to Cart
+        </ColorButton>
       </CardActions>
     </Card>
   );

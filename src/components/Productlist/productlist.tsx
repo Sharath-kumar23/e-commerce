@@ -7,17 +7,23 @@ import { fetchProductList, Products } from "../../redux-features/product/product
 import Loader from "../Loader/Loader";
 import ProductCardDetailsUI from "../ProductCard/ProductCardDetails";
 import styles from "./productlist.module.scss"
-const ProductList =()=>{
+import { withSnackbar } from "../snackbar/snackbar";
+type Details={
+  snackbarShowMessage:any
+}
+const ProductList:React.FunctionComponent<Details>  =({snackbarShowMessage})=>{
 
     const dispatch= useAppDispatch();
 
-    let {status,products, filterProducts}=useAppSelector((state)=>state.products)
-   // debugger
+   
+
+    let {status,products, filterProducts}=useAppSelector((state)=>state.products);
     if(filterProducts.length===0)
     {
       filterProducts=[...products]
     }
     const [open, setOpen] = useState(false);
+    let [product, setProduct] = useState("");
 
     useEffect(()=>{
         dispatch(fetchProductList())
@@ -31,9 +37,15 @@ const ProductList =()=>{
         return <h2>{status}</h2>;
       }
 
-    const handleClickOpen = (product?:any) => {
-    dispatch(addToCart(product))
-    setOpen(true);
+    const  updateCart =()=>{
+      dispatch(addToCart(product));
+      snackbarShowMessage(`Items succesfully added to Cart`, "success",5000);
+    }
+
+    const handleClickOpen = (products?:any) => {
+      if(products)
+      setProduct(products)
+      setOpen(true);
    };
 
   const handleClose = () => {
@@ -80,7 +92,8 @@ const ProductList =()=>{
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>No</Button>
-          <Button onClick={handleClose} autoFocus>
+          <Button onClick={()=>{handleClose();
+          updateCart();}} autoFocus>
             Yes
           </Button>
         </DialogActions>
@@ -89,4 +102,4 @@ const ProductList =()=>{
       );
 }
 
-export default ProductList;
+export default withSnackbar(ProductList);

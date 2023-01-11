@@ -24,13 +24,15 @@ export interface Products {
 export interface ProductsDetails{
     status:string,
     products:Products[],
-    filterProducts:Products[]
+    filterProducts:Products[],
+    category:number
 }
 
 const initialState:ProductsDetails={
     status:"",
     products:[],
     filterProducts:[],
+    category:0
 }
 
 const productSlice:Slice = createSlice({
@@ -55,6 +57,10 @@ const productSlice:Slice = createSlice({
        return product.category===action.payload.category
       })
     },
+    updateCategoryId(state,action)
+    {
+       state.category=action.payload;
+    }
   }
 });
 
@@ -67,6 +73,7 @@ export const fetchProductList=createAsyncThunk("fetch/products",async()=>{
 
 export const {
   filterCategory,
+  updateCategoryId
 } = productSlice.actions;
 
 export default productSlice.reducer;
